@@ -28,18 +28,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column          | Type    | Options                   |
-| --------------- | ------- | ------------------------- |
-| nickname        | string  | null: false, unique: true |
-| email           | string  | null: false, unique: true |
-| password        | string  | null: false               |
-| last_name       | string  | null: false               |
-| first_name      | string  | null: false               |
-| last_name_kana  | string  | null: false               |
-| first_name_kana | string  | null: false               |
-| birth_year      | integer | null: false               |
-| birth_month     | integer | null: false               |
-| birth_day       | integer | null: false               |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false, unique: true |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| birth_day          | integer | null: false               |
 
 ### Association
 
@@ -48,23 +46,22 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| title      | string     | null: false                    |
-| concept    | text       | null: false                    |
-| category   | string     | null: false                    |
-| status     | string     | null: false                    |
-| fee        | string     | null: false                    |
-| prefecture | string     | null: false                    |
-| schedule   | string     | null: false                    |
-| price      | integer    | null: false                    |
-| user       | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| title         | string     | null: false                    |
+| concept       | text       | null: false                    |
+| category_id   | integer    | null: false                    |
+| status_id     | integer    | null: false                    |
+| fee_id        | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| schedule_id   | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- has_one :order
 - has_one :order
 
 ## orders テーブル
@@ -73,28 +70,25 @@ Things you may want to cover:
 | ----------- | ---------- | ------------------------------ |
 | user        | references | null: false, foreign_key: true |
 | item        | references | null: false, foreign_key: true |
-| transaction | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :item
-- has_one :transaction
+- has_one :residence
 
 
-## transactions テーブル
+## residences テーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| postal_code         | string     | null: false                    |
-| shipping_prefecture | text       | null: false                    |
-| city                | string     | null: false                    |
-| address             | string     | null: false                    |
-| building            | string     | null: false                    |
-| phone_number        | string     | null: false                    |
-| item                | references | null: false, foreign_key: true |
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| postal_code            | string     | null: false                    |
+| shipping_prefecture_id | integer    | null: false                    |
+| city                   | string     | null: false                    |
+| address                | string     | null: false                    |
+| building               | string     |                                |
+| phone_number           | string     | null: false                    |
+| order                  | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :item
-- has_one :order
+- belongs_to :order

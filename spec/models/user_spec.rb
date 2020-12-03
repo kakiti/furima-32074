@@ -131,6 +131,43 @@ RSpec.describe User, type: :model do
       it "全ての値があれば登録できる" do
         expect(@user).to be_valid
       end
+      it "passwordが半角英数字で６文字以上なら登録できる" do
+        @user.password = "aaa000"
+        @user.password_confirmation = "aaa000"
+        expect(@user).to be_valid
+      end
+      it "last_nameはひらがなでも登録できる" do
+        @user.last_name = "あああ"
+        expect(@user).to be_valid
+      end
+      it "last_nameはカタカナでも登録できる" do
+        @user.last_name = "アアア"
+        expect(@user).to be_valid
+      end
+      it "last_nameは漢字でも登録できる" do
+        @user.last_name = "漢字"
+        expect(@user).to be_valid
+      end
+      it "first_nameはひらがなで登録できる" do
+        @user.first_name = "あああ"
+        expect(@user).to be_valid
+      end
+      it "first_nameはカタカナで登録できる" do
+        @user.first_name = "アアア"
+        expect(@user).to be_valid
+      end
+      it "first_nameは漢字で登録できる" do
+        @user.first_name = "漢字"
+        expect(@user).to be_valid
+      end
+      it "last_name_kanaはカタカナで登録できる" do
+        @user.last_name_kana = "アアア"
+        expect(@user).to be_valid
+      end
+      it "first_name_kanaはカタカナで登録できる" do
+        @user.first_name_kana = "アアア"
+        expect(@user).to be_valid
+      end
     end
   end
 end

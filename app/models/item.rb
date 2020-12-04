@@ -4,7 +4,7 @@ class Item < ApplicationRecord
     validates :image
     validates :title
     validates :concept
-    validates :price
+    validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 } 
   end
   with_options numericality: {other_than: 1 } do
     validates :category_id

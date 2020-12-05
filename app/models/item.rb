@@ -17,12 +17,8 @@ class Item < ApplicationRecord
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :fee
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :schedule
 end

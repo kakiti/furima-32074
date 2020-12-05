@@ -3,8 +3,8 @@ function count (){
   const tax = document.getElementById("add-tax-price");
   const profit = document.getElementById("profit");
   itemText.addEventListener("keyup", function(){
-    tax.innerHTML = `${itemText.value * 0.1 }`;
-    profit.innerHTML = `${itemText.value * 0.9 }`;
+    tax.innerHTML = Math.floor(`${itemText.value * 0.1 }`);
+    profit.innerHTML = Math.floor(`${itemText.value * 0.9 }`);
   });
 }
 

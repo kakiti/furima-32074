@@ -38,7 +38,7 @@ RSpec.describe ResidenceOrder, type: :model do
         expect(@residence_order.errors.full_messages).to include 'Postal code is invalid'
       end
       it 'prefecture_idが1だと購入できない' do
-        @residence_order.prefecture_id = '1'
+        @residence_order.prefecture_id = 1
         @residence_order.valid?
         expect(@residence_order.errors.full_messages).to include 'Prefecture must be other than 1'
       end

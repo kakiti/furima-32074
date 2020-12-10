@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :set_attribute
+  before_action :move_to_login
+
   def index
-    @item = Item.find(params[:item_id])
     @residence_order = ResidenceOrder.new
   end
 
@@ -21,6 +23,22 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:residence_order).permit(:price, :postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
   end
+
+  def set_attribute
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    elsif @item.order
+      redirect_to root_path
+    end
+  end
+
+  def move_to_login
+    unless user_signed_in? 
+      redirect_to new_user_session_path
+    end
+  end
+
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']

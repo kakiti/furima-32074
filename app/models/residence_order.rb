@@ -8,17 +8,11 @@ class ResidenceOrder
     validates :city
     validates :address
     validates :phone_number, format: { with: /\A\d{1,11}\z/ }
+    validates :item_id
+    validates :user_id
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 
-  def pay_item
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-    Payjp::Charge.create(
-      amount: params[:price],
-      card: params[:token],
-      currency: 'jpy'
-    )
-  end
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)

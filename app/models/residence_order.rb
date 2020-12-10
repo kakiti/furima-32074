@@ -2,14 +2,13 @@ class ResidenceOrder
   include ActiveModel::Model
   attr_accessor :price, :token, :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :item_id, :user_id
   with_options presence: true do
-    validates :price
     validates :token
-    validates :postal_code
-    validates :prefecture_id, numericality: { other_than: 1 } 
+    validates :postal_code,   format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :city
     validates :address
-    validates :phone_number
+    validates :phone_number,  format: {with: /\A\d{1,11}\z/ }
   end
+  validates :prefecture_id, numericality: { other_than: 1 } 
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]

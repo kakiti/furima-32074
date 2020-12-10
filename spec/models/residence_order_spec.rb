@@ -72,6 +72,16 @@ RSpec.describe ResidenceOrder, type: :model do
         @residence_order.valid?
         expect(@residence_order.errors.full_messages).to include 'Phone number is invalid'
       end
+      it 'user_idが空だと購入できない' do
+        @residence_order.user_id = ''
+        @residence_order.valid?
+        expect(@residence_order.errors.full_messages).to include "User can't be blank"
+      end
+      it 'item_idが空だと購入できない' do
+        @residence_order.item_id = ''
+        @residence_order.valid?
+        expect(@residence_order.errors.full_messages).to include "Item can't be blank"
+      end
     end
     context '購入できる' do
       it '全ての値があれば購入できる' do

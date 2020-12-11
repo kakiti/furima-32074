@@ -16,3 +16,4 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 require("../count")
+require("../card")

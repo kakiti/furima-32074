@@ -9,6 +9,9 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def edit
+  end
+
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -20,6 +23,9 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+  end
+
+  def update
   end
 
   private

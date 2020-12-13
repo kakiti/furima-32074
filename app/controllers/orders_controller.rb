@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_attribute
+  before_action :set_item
+  before_action :move_to_root
   before_action :move_to_login
 
   def index
@@ -24,8 +25,11 @@ class OrdersController < ApplicationController
     params.require(:residence_order).permit(:price, :postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
   end
 
-  def set_attribute
+  def set_item
     @item = Item.find(params[:item_id])
+  end
+  
+  def move_to_root
     if current_user.id == @item.user_id
       redirect_to root_path
     elsif @item.order

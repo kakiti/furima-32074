@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
 
   def set_attribute
     @item = Item.find(params[:item_id])
-    if current_user == @item.user_id
+    if current_user.id == @item.user_id
       redirect_to root_path
     elsif @item.order
       redirect_to root_path

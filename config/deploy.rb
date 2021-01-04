@@ -3,6 +3,7 @@ lock "~> 3.14.1"
 
 set :application, "my_app_name"
 set :repo_url, "git@example.com:me/my_repo.git"
+set :branch ,"master"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
